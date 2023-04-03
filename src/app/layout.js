@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import './globals.css'
+import Providers from './Providers'
 
 export const metadata = {
   title: 'PS Portal',
@@ -10,14 +11,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {/*Header*/}
+        <Providers>
+           {/*Header*/}
 
         <Header />
         {/*NavBar*/}
 
         {/*SearchBox*/}
         
-        {children}</body>
+        {children}
+        </Providers>
+       </body>
     </html>
   )
 }
