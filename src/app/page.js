@@ -11,9 +11,9 @@ const callouts = [
   },
   {
     name: 'Self-Improvement',
-    description: 'Journals and note-taking',
+    description: 'Skills Matrix',
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg',
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+    imageAlt: 'Learning the right skills for the job',
     href: '#',
   },
   {
