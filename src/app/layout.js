@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import NavBar from '@/components/NavBar'
 import './globals.css'
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
         {/*SearchBox*/}
         
         {children}
+        <Footer></Footer>
         </Providers>
        </body>
     </html>
