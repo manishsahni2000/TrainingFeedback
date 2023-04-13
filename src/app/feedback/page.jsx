@@ -45,7 +45,7 @@ export default function Feedback() {
     emailjs.send(SERVICE_ID, TEMPLATE_ID, {
         to_name: 'Training Team',
         from_name: 'Manish',
-        subject: 'DEveloper Foundation DF01 Day 1 Feedback',
+        subject: 'Developer Foundation DF01 Day 1 Feedback',
         message: 'Email message content',
         reply_to: 'manishsahni2000@gmail.com, manish.sahni@mongodb.com'
     }, USER_ID).then((result) => {
@@ -56,7 +56,7 @@ export default function Feedback() {
   }
   return (
 
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto" style={{margin: '0 auto'}}>
       <h1 className="text-xl font-semibold mb-4">Course Feedback</h1>
       
       <form onSubmit={handleSubmit}>
