@@ -11,7 +11,7 @@ export default function Header() {
   height={100}
 />
       <h2 className="text-4xl">
-      
+      Developer Foundation Training Feedback
       </h2>
    
   </div>

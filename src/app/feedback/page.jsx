@@ -7,7 +7,7 @@ import * as Realm from "realm-web";
 
 export default function Feedback() {
   const [name, setName] = useState("");
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(9);
   const [feedback, setFeedback] = useState("");
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState(false)
@@ -49,7 +49,7 @@ if(handleSubmit.insertedId != 'undefined'){
   alert('Feeback submitted successfully!');
 }
       // Reset form
-      setRating(8)
+      setRating(9)
       setEmail('')
       setFeedback('')
       setJobTitle('')
@@ -59,10 +59,7 @@ if(handleSubmit.insertedId != 'undefined'){
   return (
 
     <div className="max-w-md mx-auto" style={{margin: '0 auto'}}>
-      <h2 className="text-2xl font-semibold mb-5">
-      Developer Foundation Training Feedback
-      </h2>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block font-medium mb-2">
             Your Name
@@ -119,7 +116,7 @@ if(handleSubmit.insertedId != 'undefined'){
         </div>
         <div className="mb-4">
           <label htmlFor="feedback" className="block font-medium mb-2">
-            Feedback and Suggestion about the course content
+            Feedback and Suggestion about the Course Content
           </label>
           <textarea
             id="feedback"

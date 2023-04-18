@@ -3,8 +3,8 @@ import './globals.css'
 import Providers from './Providers'
 
 export const metadata = {
-  title: 'PS Portal',
-  description: 'This is Training Portal for MongoDB PS Team',
+  title: 'MongoDB Training Feedback',
+  description: 'This is Training Feedback Portal for MongoDB PS Team',
 }
 
 export default function RootLayout({ children }) {
@@ -12,15 +12,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Providers>
-           {/*Header*/}
-
         <Header />
-        {/*NavBar*/}
-        
-        {/*SearchBox*/}
-        
         {children}
-       
         </Providers>
        </body>
     </html>
