@@ -1,6 +1,8 @@
 "use client"
 import { useState } from "react";
-import emailjs from 'emailjs-com';
+import * as Realm from "realm-web";
+
+
 
 
 export default function Feedback() {
@@ -11,54 +13,55 @@ export default function Feedback() {
   const [emailError, setEmailError] = useState(false)
   const [jobTitle,setJobTitle] = useState("")
 
+  
 
+  var refresh_token = "";
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
-  const handleSubmit = (event) => {
+  async function handleSubmit (event) {
     event.preventDefault();
-    console.log({ name, rating, feedback });
+    console.log({ name, rating, feedback , jobTitle, email });
     // Validate email
    if (!email || !/\S+@\S+\.\S+/.test(email)) {
     setEmailError(true)
     return
    }
   
-      // Send email
-      sendEmail(rating, email)
-  
-      // Reset form
-      setRating(5)
-      setEmail('')
-      setEmailError(false)
-  }
+// Add your App ID
+const app = new Realm.App({ id: "psportal-rldsu" });
+// Create an anonymous credential
+// Create an email/password credential
+const credentials = Realm.Credentials.emailPassword(
+  "manish.sahni@mongodb.com",
+  "manish@123"
+);
+try {
+  var user = await app.logIn(credentials);
+  console.log("Successfully logged in!", user.id);
+} catch (err) {
+  console.error("Failed to log in", err.message);
+}
 
-  function sendEmail(rating, email) {
-    const SERVICE_ID = 'service_8s0bldj'; // replace with your own service ID
-    const TEMPLATE_ID = 'template_zq01sha'; // replace with your own template ID
-    const USER_ID = 'GNQlvblxroMdo8Lyg'; // replace with your own user ID
-  
-    const templateParams = {
-      rating: rating,
-      email: email,
-    };
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-        to_name: 'Training Team',
-        from_name: 'Manish',
-        subject: 'Developer Foundation DF01 Day 1 Feedback',
-        message: 'Email message content',
-        reply_to: 'manishsahni2000@gmail.com, manish.sahni@mongodb.com'
-    }, USER_ID).then((result) => {
-        console.log('Email sent successfully:', result.text);
-    }).catch((error) => {
-        console.error('Email sending failed:', error);
-    });
+const handleSubmit = await user.functions.submitFeedback(email,jobTitle,name,rating,feedback);
+console.log(handleSubmit.insertedId);
+if(handleSubmit.insertedId != 'undefined'){
+  alert('Feeback submitted successfully!');
+}
+      // Reset form
+      setRating(8)
+      setEmail('')
+      setFeedback('')
+      setJobTitle('')
+      setName('')
+      setEmailError(false)
   }
   return (
 
     <div className="max-w-md mx-auto" style={{margin: '0 auto'}}>
-      <h1 className="text-xl font-semibold mb-4">Course Feedback</h1>
-      
+      <h2 className="text-2xl font-semibold mb-5">
+      Developer Foundation Training Feedback
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block font-medium mb-2">
@@ -81,15 +84,15 @@ export default function Feedback() {
           <input
             type="text"
             id="jobTitle"
-            value={name}
-            onChange={(event) => set(event.target.value)}
+            value={jobTitle}
+            onChange={(event) => setJobTitle(event.target.value)}
             className={`w-full mt-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 ${emailError ? 'border-red-500' : ''}`}
 
             required
           />
         </div>
         <div className="my-4">
-        <label htmlFor="email" className="block font-medium text-gray-700">Email:</label>
+        <label htmlFor="email" className="block font-medium">Email</label>
         <input 
           type="email" 
           id="email" 
@@ -116,7 +119,7 @@ export default function Feedback() {
         </div>
         <div className="mb-4">
           <label htmlFor="feedback" className="block font-medium mb-2">
-            Feedback and Suggestion
+            Feedback and Suggestion about the course content
           </label>
           <textarea
             id="feedback"
