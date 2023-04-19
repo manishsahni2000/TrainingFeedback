@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div className="flex justify-between mx-2 max-w-6xl sm:mx-auto items-center py-10 text-center">
      <div className="flex items-center space-x-5">
-     <DarkModeSwitch />
+     
      <Image
   src="/mongodb_logo.png"
   alt="My logo"
@@ -16,7 +16,7 @@ export default function Header() {
       <h2 className="text-4xl">
       Developer Foundation Training Feedback
       </h2>
-   
+      <DarkModeSwitch />
   </div>
 </div>
 
